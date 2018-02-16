@@ -21,7 +21,7 @@ switch($uc){
 	case 'etatFrais' :{
 		include("controleurs/c_etatFrais.php");break; 
 	}
-	case 'compteRendu' :{
+	case 'compteRendue' :{
 		include("controleurs/c_compteRendu.php");break; 
 	}
 }
