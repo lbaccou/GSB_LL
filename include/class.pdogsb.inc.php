@@ -16,8 +16,8 @@
  */
 
 class PdoGsb{   		
-      	private static $serveur='mysql:host=192.168.43.216';
-      	private static $bdd='dbname=gsb_frais compte-rendus';   		
+      	private static $serveur='mysql:host=localhost';
+      	private static $bdd='dbname=gsb_frais';   		
       	private static $user='root' ;    		
       	private static $mdp='root' ;	
 		private static $monPdo;
