@@ -6,7 +6,7 @@
 
   </h2>
 
-  </div>  
+  </div>
     <ul id="menuList">
       <li >
       Visiteur :
@@ -20,7 +20,7 @@
         <a href="index.php?uc=etatFrais&action=selectionnerMois" title="Consultation de mes fiches de frais">Mes fiches de frais</a>
       </li>
       <li class="smenu">
-        <a href="index.php?uc=compteRendu&action=afficherCompteRendu" title="Saisie d'un compte-rendu">Compte-rendu</a>
+        <a href="index.php?uc=compteRendu&action=saisirCompteRendu" title="Saisie d'un compte-rendu">Compte-rendu</a>
       </li>
       <li class="smenu">
         <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
@@ -28,4 +28,3 @@
     </ul>
 
   </div>
-    
