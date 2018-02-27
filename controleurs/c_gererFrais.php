@@ -8,7 +8,8 @@ $mois=$numMois;
 $action = $_REQUEST['action'];
 
 switch($action){
-	case 'saisirFrais':{
+	case 'saisirFrais':
+	{
 	
 		if($pdo->estPremierFraisMois($idVisiteur,$mois)){
 		
@@ -21,13 +22,15 @@ switch($action){
 		if(lesQteFraisValides($lesFrais)){
 	  	 	$pdo->majFraisForfait($idVisiteur,$mois,$lesFrais);
 		}
-		else{
+		else
+		{
 			ajouterErreur("Les valeurs des frais doivent être numériques");
 			include("vues/v_erreurs.php");
 		}
 	  break;
 	}
-	case 'validerCreationFrais':{
+	case 'validerCreationFrais':
+	{
 		$dateFrais = $_REQUEST['dateFrais'];
 		$libelle = $_REQUEST['libelle'];
 		$montant = $_REQUEST['montant'];
@@ -35,12 +38,14 @@ switch($action){
 		if (nbErreurs() != 0 ){
 			include("vues/v_erreurs.php");
 		}
-		else{
+		else
+		{
 			$pdo->creeNouveauFraisHorsForfait($idVisiteur,$mois,$libelle,$dateFrais,$montant);
 		}
 		break;
 	}
-	case 'supprimerFrais':{
+	case 'supprimerFrais':
+	{
 		$idFrais = $_REQUEST['idFrais'];
 	    $pdo->supprimerFraisHorsForfait($idFrais);
 		break;
