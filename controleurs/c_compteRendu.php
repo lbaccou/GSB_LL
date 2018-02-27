@@ -6,7 +6,6 @@ switch($action)
 	case 'saisirCompteRendu' :
 	{
 		$infosProspect = $pdo->getInfosProspect();
-		var_dump($infosProspect);
 		include("vues/v_saisirCompteRendu.php");
 		break;
 	}

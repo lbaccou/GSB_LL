@@ -17,12 +17,12 @@
 
 class PdoGsb
 {   		
-      	private static $serveur='mysql:host=localhost';
-      	private static $bdd='dbname=gsb_frais';   		
-      	private static $user='root' ;    		
-      	private static $mdp='root' ;	
-		private static $monPdo;
-		private static $monPdoGsb=null;
+  	private static $serveur='mysql:host=localhost';
+  	private static $bdd='dbname=gsb_frais';   		
+  	private static $user='root' ;    		
+  	private static $mdp='root' ;	
+	private static $monPdo;
+	private static $monPdoGsb=null;
 /**
  * Constructeur privé, crée l'instance de PDO qui sera sollicitée
  * pour toutes les méthodes de la classe
@@ -331,7 +331,7 @@ class PdoGsb
  */
 	public function getInfosProspect()
 	{
-		$req = "SELECT idProspect, prenom, nom FROM Prospect";
+		$req = "SELECT * FROM Prospect";
 		$res = PdoGsb::$monPdo->query($req);
 		
 		return $res;
