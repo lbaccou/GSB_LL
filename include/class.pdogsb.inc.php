@@ -252,8 +252,8 @@ class PdoGsb
 	public function creeNouveauFraisHorsForfait($idVisiteur,$mois,$libelle,$date,$montant)
 	{
 		$dateFr = dateFrancaisVersAnglais($date);
-		$req = "insert into LigneFraisHorsForfait 
-		values('','$idVisiteur','$mois','$libelle','$dateFr','$montant')";
+		$req = "INSERT INTO LigneFraisHorsForfait 
+		VALUES('','$idVisiteur','$mois','$libelle','$dateFr','$montant')";
 		PdoGsb::$monPdo->exec($req);
 	}
 /**
@@ -263,7 +263,7 @@ class PdoGsb
 */
 	public function supprimerFraisHorsForfait($idFrais)
 	{
-		$req = "delete from LigneFraisHorsForfait where LigneFraisHorsForfait.id =$idFrais ";
+		$req = "DELETE FROM LigneFraisHorsForfait WHERE LigneFraisHorsForfait.id =$idFrais ";
 		PdoGsb::$monPdo->exec($req);
 	}
 /**
@@ -274,8 +274,8 @@ class PdoGsb
 */
 	public function getLesMoisDisponibles($idVisiteur)
 	{
-		$req = "select FicheFrais.mois as mois from  FicheFrais where FicheFrais.idVisiteur ='$idVisiteur' 
-		order by FicheFrais.mois desc ";
+		$req = "SELECT FicheFrais.mois AS mois FROM  FicheFrais WHERE FicheFrais.idVisiteur ='$idVisiteur' 
+		ORDER BY FicheFrais.mois DESC ";
 		$res = PdoGsb::$monPdo->query($req);
 		$lesMois =array();
 		$laLigne = $res->fetch();
@@ -302,9 +302,9 @@ class PdoGsb
 */	
 	public function getLesInfosFicheFrais($idVisiteur,$mois)
 	{
-		$req = "select FicheFrais.idEtat as idEtat, FicheFrais.dateModif as dateModif, FicheFrais.nbJustificatifs as nbJustificatifs, 
-			FicheFrais.montantValide as montantValide, Etat.libelle as libEtat from  FicheFrais inner join Etat on FicheFrais.idEtat = Etat.id 
-			where FicheFrais.idVisiteur ='$idVisiteur' and FicheFrais.mois = '$mois'";
+		$req = "SELECT FicheFrais.idEtat AS idEtat, FicheFrais.dateModif AS dateModif, FicheFrais.nbJustificatifs AS nbJustificatifs, 
+			FicheFrais.montantValide AS montantValide, Etat.libelle AS libEtat FROM  FicheFrais INNER JOIN Etat ON FicheFrais.idEtat = Etat.id 
+			WHERE FicheFrais.idVisiteur ='$idVisiteur' AND FicheFrais.mois = '$mois'";
 		$res = PdoGsb::$monPdo->query($req);
 		$laLigne = $res->fetch();
 		return $laLigne;
@@ -319,9 +319,46 @@ class PdoGsb
  
 	public function majEtatFicheFrais($idVisiteur,$mois,$etat)
 	{
-		$req = "update FicheFrais set idEtat = '$etat', dateModif = now() 
-		where FicheFrais.idVisiteur ='$idVisiteur' and FicheFrais.mois = '$mois'";
+		$req = "UPDATE FicheFrais SET idEtat = '$etat', dateModif = now() 
+		WHERE FicheFrais.idVisiteur ='$idVisiteur' AND FicheFrais.mois = '$mois'";
 		PdoGsb::$monPdo->exec($req);
 	}
+
+/**
+ * Retourne le nom, prénom et id de tout les prospect
+
+ * @return un tableau avec tous les prospect
+ */
+	public function getInfosProspect()
+	{
+		$req = "SELECT idProspect, prenom, nom FROM Prospect";
+		$res = PdoGsb::$monPdo->query($req);
+		
+		return $res;
+	}
+
+/**
+ * Crée un nouveau compte rendu pour un visiteur à une date donné avec un client précis
+ * ainsi qu'une note et un rapport.
+
+ * @param $idVisiteur
+ * @param $idProspect
+ * @param $note
+ * @param $libelle
+ */
+	public function creeNouveauCompteRendu($idVisiteur, $idProspect, $note, $libelle)
+	{
+		$req = "INSERT INTO CompteRendu VALUES (:idVisiteur,'',:idProspect,:note,DATE(NOW()),:libelle)";
+		$res = PdoGsb::$monPdo->prepare($req);
+        $res->execute(array(":idVisiteur" => $idVisiteur,":idProspect" => $idProspect,":note" => $note,":libelle" => $libelle));
+	}
+
+/**
+ *
+ */
+	// public function ()
+	// {
+	// 	$req
+	// }
 }
 ?>

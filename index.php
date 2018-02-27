@@ -1,5 +1,5 @@
 <?php
-//test debug et sync et modif de commentaire pour test 
+//test debug et sync et modif de commentaire pour test
 //et modif en appelant l'éditeur sublime directement depuis githubformac
 require_once("include/fct.inc.php");
 require_once ("include/class.pdogsb.inc.php");
@@ -10,7 +10,7 @@ $estConnecte = estConnecte();
 if(!isset($_REQUEST['uc']) || !$estConnecte)
 {
      $_REQUEST['uc'] = 'connexion';
-}	 
+}
 $uc = $_REQUEST['uc'];
 switch($uc){
 	case 'connexion':
@@ -26,14 +26,13 @@ switch($uc){
 	case 'etatFrais' :
 	{
 		include("controleurs/c_etatFrais.php");
-		break; 
+		break;
 	}
-	case 'compteRendu' :
+	case 'compteRendue' :
 	{
 		include("controleurs/c_compteRendu.php");
-		break; 
+		break;
 	}
 }
 include("vues/v_pied.php") ;
 ?>
-
