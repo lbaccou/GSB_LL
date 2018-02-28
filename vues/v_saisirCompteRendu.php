@@ -1,8 +1,8 @@
 <form method="POST" action="index.php?uc=compteRendu&action=validerCompteRendu">
-  <select>
+  <select name = "prospect">
   <?php foreach ($infosProspect as $infoProspect)
   { ?>
-    <option id = "<?= $infoProspect['idProspect']; ?>"> <?= $infoProspect['nom']; ?> <?= $infoProspect['prenom']; ?> </option>
+    <option value = "<?= $infoProspect['idProspect']; ?>"> <?= $infoProspect['nom']; ?> <?= $infoProspect['prenom']; ?> </option>
   <?php }
   ?>
   </select>
