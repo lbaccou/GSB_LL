@@ -333,8 +333,18 @@ class PdoGsb
 	{
 		$req = "SELECT * FROM Prospect";
 		$res = PdoGsb::$monPdo->query($req);
-
 		return $res;
+	}
+
+/**
+ *
+ */
+	public function getNouveauNumeroOrdre($idVisiteur)
+	{
+		$req = "SELECT COUNT(NumeroOrdre)+1 FROM CompteRendu WHERE RefVisiteur = '$idVisiteur'";
+		$res = PdoGsb::$monPdo->query($req);
+		$numero = $res->fetch();
+		return $numero;
 	}
 
 /**
@@ -346,19 +356,12 @@ class PdoGsb
  * @param $note
  * @param $libelle
  */
-	public function creeNouveauCompteRendu($idVisiteur, $idProspect, $note, $libelle)
+	public function creeNouveauCompteRendu($idVisiteur, $numeroOrdre, $idProspect, $note, $libelle)
 	{
-		$req = "INSERT INTO CompteRendu VALUES (:idVisiteur,'',:idProspect,:note,DATE(NOW()),:libelle)";
+		$req = "INSERT INTO CompteRendu VALUES (:idVisiteur,:numeroOrdre,:idProspect,:note,DATE(NOW()),:libelle)";
 		$res = PdoGsb::$monPdo->prepare($req);
-    $res->execute(array(":idVisiteur" => $idVisiteur,":idProspect" => $idProspect,":note" => $note,":libelle" => $libelle));
+    	$res->execute(array(":idVisiteur" => $idVisiteur, ":numeroOrdre" => $numeroOrdre, ":idProspect" => $idProspect,":note" => $note,":libelle" => $libelle));
 	}
 
-/**
- *
- */
-	// public function ()
-	// {
-	// 	$req
-	// }
 }
 ?>

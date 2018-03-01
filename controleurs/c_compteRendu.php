@@ -15,11 +15,8 @@ switch($action)
 		$idProspect = $_REQUEST['idProspect'];
 		$note = $_REQUEST['note'];
 		$libelle = $_REQUEST['libelle'];
-		if(!isset($pdo->getNumeroOrdre()))
-		{
-
-		}
-		$pdo->creeNouveauCompteRendu($idVisiteur, $idProspect, $note, $libelle);
+		$numeroOrdre = $pdo->getNouveauNumeroOrdre($idVisiteur);
+		$pdo->creeNouveauCompteRendu($idVisiteur, $numeroOrdre[0], $idProspect, $note, $libelle);
 		break;
 	}
 	case 'ListeCompteRendu':

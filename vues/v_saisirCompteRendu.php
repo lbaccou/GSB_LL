@@ -1,5 +1,5 @@
 <form method="POST" action="index.php?uc=compteRendu&action=validerCompteRendu">
-  <select name = "prospect">
+  <select name = "idProspect">
   <?php foreach ($infosProspect as $infoProspect)
   { ?>
     <option value = "<?= $infoProspect['IdProspect']; ?>"> <?= $infoProspect['nom']; ?> <?= $infoProspect['prenom']; ?> </option>
