@@ -337,7 +337,10 @@ class PdoGsb
 	}
 
 /**
- *
+ * Retourne un tableau avec une seule valeur, le nouveau numéro d'ordre à mettre sur le compte rendu.
+
+ * @param $idVisiteur
+ * @return un tableau avec une seule valeur qui sera le numéro d'ordre du nouveau compte rendu.
  */
 	public function getNouveauNumeroOrdre($idVisiteur)
 	{
@@ -361,6 +364,24 @@ class PdoGsb
 		$req = "INSERT INTO CompteRendu VALUES (:idVisiteur,:numeroOrdre,:idProspect,:note,DATE(NOW()),:libelle)";
 		$res = PdoGsb::$monPdo->prepare($req);
     	$res->execute(array(":idVisiteur" => $idVisiteur, ":numeroOrdre" => $numeroOrdre, ":idProspect" => $idProspect,":note" => $note,":libelle" => $libelle));
+	}
+
+/**
+ * Retourne la liste de tous les comptes rendus, sauf si l'idVisiteur est défini et donc que ce n'est pas l'administrateur 
+ * dans ce cas cela retourne la liste des comptes rendus de cet utilisateur
+
+ * @param $idVisiteur
+ * @return liste des comptes rendus
+ */
+	public function getComptesRendus($idVisiteur = null)
+	{
+		$req = "SELECT CompteRendu.date AS date, Visiteur.nom AS nomVisiteur, Visiteur.prenom AS prenomVisiteur, Prospect.nom AS nomProspect, Prospect.prenom AS prenomProspect, CompteRendu.note AS note FROM CompteRendu, Visiteur, Prospect WHERE CompteRendu.RefVisiteur = Visiteur.id AND CompteRendu.RefProspect = Prospect.IdProspect "
+		if(isset($idVisiteur))
+		{
+			$req .= " AND RefVisiteur = '$idVisiteur'";
+		}
+		$res = PdoGsb::$monPdo->query($req);
+		return $res;
 	}
 
 }
