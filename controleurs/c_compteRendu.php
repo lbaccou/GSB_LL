@@ -21,7 +21,14 @@ switch($action)
 	}
 	case 'ListeCompteRendu':
 	{
-		//$comptesRendus = $pdo->getComptesRendus($idVisiteur)
+		if($idVisiteur == "adm")
+		{
+			$comptesRendus = $pdo->getComptesRendus();
+		}
+		else
+		{
+			$comptesRendus = $pdo->getComptesRendus($idVisiteur);
+		}
 		break;
 	}
 
