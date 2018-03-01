@@ -375,7 +375,7 @@ class PdoGsb
  */
 	public function getComptesRendus($idVisiteur = null)
 	{
-		$req = "SELECT CompteRendu.date AS date, Visiteur.nom AS nomVisiteur, Visiteur.prenom AS prenomVisiteur, Prospect.nom AS nomProspect, Prospect.prenom AS prenomProspect, CompteRendu.note AS note FROM CompteRendu, Visiteur, Prospect WHERE CompteRendu.RefVisiteur = Visiteur.id AND CompteRendu.RefProspect = Prospect.IdProspect ";
+		$req = "SELECT CompteRendu.date AS date, Visiteur.nom AS nomVisiteur, Visiteur.prenom AS prenomVisiteur, Prospect.nom AS nomProspect, Prospect.prenom AS prenomProspect, CompteRendu.note AS note, CompteRendu.RefVisiteur AS idVisiteur, CompteRendu.NumeroOrdre AS numeroOrdre FROM CompteRendu, Visiteur, Prospect WHERE CompteRendu.RefVisiteur = Visiteur.id AND CompteRendu.RefProspect = Prospect.IdProspect ";
 		if(isset($idVisiteur))
 		{
 			$req .= " AND RefVisiteur = '$idVisiteur'";
