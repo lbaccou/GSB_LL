@@ -19,7 +19,7 @@ switch($action)
 		$pdo->creeNouveauCompteRendu($idVisiteur, $numeroOrdre[0], $idProspect, $note, $libelle);
 		break;
 	}
-	case 'ListeCompteRendu':
+	case 'listeCompteRendu':
 	{
 		if($idVisiteur == "adm")
 		{
@@ -29,8 +29,8 @@ switch($action)
 		{
 			$comptesRendus = $pdo->getComptesRendus($idVisiteur);
 		}
+		include("vues/v_listeComptesRendus.php");
 		break;
 	}
-
 }
 ?>

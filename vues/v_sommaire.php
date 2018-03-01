@@ -23,7 +23,7 @@
         <a href="index.php?uc=compteRendu&action=saisirCompteRendu" title="Saisie d'un compte-rendu">Saisie d'un Compte-rendu</a>
       </li>
       <li class="smenu">
-        <a href="index.php?uc=compteRendu&action=listeComptesRendus" title="Liste des comptes-rendus">Liste des Comptes-rendus</a>
+        <a href="index.php?uc=compteRendu&action=listeCompteRendu" title="Liste des comptes-rendus">Liste des Comptes-rendus</a>
       </li>
       <li class="smenu">
         <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
